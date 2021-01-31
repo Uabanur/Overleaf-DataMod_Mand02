@@ -1,0 +1,19 @@
+\section{Q5. Model checking used in Industry}
+%Does the report provide good examples of how model checking is used in Industry?
+
+The book \textit{Baier \& Katoen: Principles of Model Checking, MIT Press} used in the DTU Course \texttt{02246 Model Checking} mentions several examples of model checking in industry. The first example below shows the model checking is used to check software. The second example shows how model checking is used to check hardware. \\
+
+\textit{Model-checking software:}\\
+\textbf{NASA's Mars Pathfinder: Havelund, Lowry, and Penix.}\footnote{https://ti.arc.nasa.gov/m/pub-archive/archive/0444.pdf} Using model checking, Havelund et al. discovered 4 errors in software used by the Mars Pathfinder, a robotic spacecraft that landed on Mars in 1997. The 4 errors were unexpected concurrency errors, occurring during interleaving of tasks, i.e. when tasks were overlapping, and had not been discovered during traditional testing. The errors  The program indirectly under test consisted of 3000 lines of LISP; Havelund et al abstracted the program to 500 lines in the PROMELA language \footnote{Process or Protocol Meta Language, a verification modeling language by Holzmann}.\\
+
+Detail of one of the erorrs: missing a critical section around code on the form
+\begin{lstlisting}
+if(no_new_events())
+goto_sleep()
+\end{lstlisting}
+
+If the condition \texttt{no\_new\_events()} evaluated to true, the robot decided to go to sleep. However: if a new event occurred \underline{after} the condition test but \underline{before} the robot went to sleep, the event would be missed. \\
+
+\textit{Model-checking hardware:}\\
+\textbf{IBM: Formal verication made easy}\footnote{Schlipf, Buechner, Fritz, Helms, Koehl: Formal verification made easy}: In 1997, Schlipf et al. released a paper describing how to integrate 
+model-checking techniques in the traditional hardware development process at IBM. They concluded that while model checking does not substitute traditional simulation and emulation to discover errors, model checking has a complementary use. In particular, Schlipf concluded that during a design of a memory bus adapter, 24 \% of all defects they found were were discovered using model checking, and estimated that 40\% of these errors would not have been discovered by simulation. 
